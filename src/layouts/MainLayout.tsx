@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { ScrollToTopFloat } from '@/components/layout/ScrollToTopFloat'
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat'
 
 export function MainLayout() {
@@ -18,6 +19,7 @@ export function MainLayout() {
         <Outlet />
       </main>
       <Footer />
+      <ScrollToTopFloat />
       <WhatsAppFloat />
     </div>
   )
