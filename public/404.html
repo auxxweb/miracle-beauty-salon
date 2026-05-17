@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Miracle Beauty Care</title>
+    <script>
+      ;(function () {
+        var repo = '/miracle-beauty-salon'
+        var path = window.location.pathname.replace(repo, '') || '/'
+        if (!path.startsWith('/')) path = '/' + path
+        var hash = window.location.hash
+        if (!hash || hash === '#') {
+          hash = path === '/' ? '#/' : '#' + path
+        }
+        window.location.replace(repo + '/' + hash + window.location.search)
+      })()
+    </script>
+  </head>
+  <body></body>
+</html>

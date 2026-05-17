@@ -16,12 +16,9 @@ export default defineConfig({
     cssMinify: true,
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (!id.includes('node_modules')) return
-          if (id.includes('framer-motion')) return 'motion'
-          if (id.includes('react-router')) return 'router'
-          if (id.includes('lucide-react')) return 'icons'
-          if (id.includes('react-dom') || id.includes('/react/')) return 'vendor'
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          motion: ['framer-motion'],
         },
       },
     },
