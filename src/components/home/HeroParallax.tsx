@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform } from '@/lib/motion'
 import { ChevronDown } from 'lucide-react'
 import { hero } from '@/data/content'
 import { heroSlides } from '@/data/images'

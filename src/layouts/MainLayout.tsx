@@ -1,9 +1,13 @@
+import { lazy, Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { ScrollToTopFloat } from '@/components/layout/ScrollToTopFloat'
 import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat'
+
+const ScrollToTopFloat = lazy(() =>
+  import('@/components/layout/ScrollToTopFloat').then((m) => ({ default: m.ScrollToTopFloat })),
+)
 
 export function MainLayout() {
   const { pathname } = useLocation()
@@ -19,7 +23,9 @@ export function MainLayout() {
         <Outlet />
       </main>
       <Footer />
-      <ScrollToTopFloat />
+      <Suspense fallback={null}>
+        <ScrollToTopFloat />
+      </Suspense>
       <WhatsAppFloat />
     </div>
   )

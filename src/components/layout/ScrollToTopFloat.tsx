@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ChevronUp } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from '@/lib/motion'
 
 const SCROLL_THRESHOLD = 320
 

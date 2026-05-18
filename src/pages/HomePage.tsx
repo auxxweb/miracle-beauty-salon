@@ -1,8 +1,8 @@
+import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion } from '@/lib/motion'
 import { HeroParallax } from '@/components/home/HeroParallax'
-import { WhyChooseUs } from '@/components/home/WhyChooseUs'
-import { FAQ } from '@/components/home/FAQ'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { Section } from '@/components/ui/Section'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { ServiceOverviewCard } from '@/components/cards/ServiceOverviewCard'
@@ -21,6 +21,11 @@ import {
   galleryImages,
   site,
 } from '@/data/site'
+
+const WhyChooseUs = lazy(() =>
+  import('@/components/home/WhyChooseUs').then((m) => ({ default: m.WhyChooseUs })),
+)
+const FAQ = lazy(() => import('@/components/home/FAQ').then((m) => ({ default: m.FAQ })))
 
 export function HomePage() {
   return (
@@ -91,7 +96,9 @@ export function HomePage() {
         </div>
       </Section>
 
-      <WhyChooseUs />
+      <Suspense fallback={null}>
+        <WhyChooseUs />
+      </Suspense>
 
       <Section className="bg-surface">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -108,11 +115,10 @@ export function HomePage() {
             </Button>
           </div>
           <div className="relative aspect-[4/5] max-h-[520px] overflow-hidden rounded-sm border border-gold-subtle">
-            <img
+            <OptimizedImage
               src={images.about.reception}
               alt="Miracle Beauty Care reception"
               className="w-full h-full object-cover"
-              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
             <p className="absolute bottom-6 left-6 right-6 font-serif text-xl text-white italic">
@@ -139,11 +145,10 @@ export function HomePage() {
                   : 'aspect-square'
               }`}
             >
-              <img
+              <OptimizedImage
                 src={img.src}
                 alt={img.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
             </Link>
@@ -177,7 +182,9 @@ export function HomePage() {
         </div>
       </Section>
 
-      <FAQ />
+      <Suspense fallback={null}>
+        <FAQ />
+      </Suspense>
 
       <Section narrow className="bg-black border-t border-gold-subtle">
         <div className="text-center">

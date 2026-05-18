@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from '@/lib/motion'
 import { X } from 'lucide-react'
 import { PageMeta } from '@/components/ui/PageMeta'
 import { Section } from '@/components/ui/Section'

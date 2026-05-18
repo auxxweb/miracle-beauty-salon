@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from '@/lib/motion'
 import { useLocation } from 'react-router-dom'
 import { submitEnquiryToGoogleSheets } from '@/api/submitEnquiry'
 import { CONTACT_SERVICE_OPTIONS } from '@/config/forms'

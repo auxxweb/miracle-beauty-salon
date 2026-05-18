@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+import { OptimizedImage } from '@/components/ui/OptimizedImage'
 
 type Props = {
   title: string
@@ -15,11 +16,10 @@ export function ServiceOverviewCard({ title, summary, image, to }: Props) {
       className="group block overflow-hidden border border-gold-subtle bg-surface rounded-sm hover:border-gold/40 transition-all"
     >
       <div className="overflow-hidden bg-black/30">
-        <img
+        <OptimizedImage
           src={image}
           alt={title}
           className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]"
-          loading="lazy"
         />
       </div>
       <div className="p-6">

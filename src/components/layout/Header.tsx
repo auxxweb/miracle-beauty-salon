@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from '@/lib/motion'
 import { NavLogo } from '@/components/layout/NavLogo'
 import { Button } from '@/components/ui/Button'
 

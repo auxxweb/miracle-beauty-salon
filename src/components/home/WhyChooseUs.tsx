@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from '@/lib/motion'
 import { Section } from '@/components/ui/Section'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { whyChooseUs } from '@/data/site'

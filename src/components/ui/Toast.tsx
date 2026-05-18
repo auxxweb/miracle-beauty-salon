@@ -6,7 +6,7 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from '@/lib/motion'
 import { CheckCircle2, XCircle, X } from 'lucide-react'
 
 type ToastType = 'success' | 'error'
@@ -54,11 +54,10 @@ export function ToastProvider({ children }: { children: ReactNode }) {
         aria-live="polite"
         className="pointer-events-none fixed inset-x-4 top-24 z-[100] flex flex-col items-center gap-3 sm:inset-x-auto sm:right-6 sm:items-end"
       >
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence>
           {toasts.map((toast) => (
             <motion.div
               key={toast.id}
-              layout
               initial={{ opacity: 0, y: -16, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.96 }}

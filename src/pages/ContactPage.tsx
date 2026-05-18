@@ -1,8 +1,12 @@
+import { lazy, Suspense } from 'react'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { PageMeta } from '@/components/ui/PageMeta'
 import { Section } from '@/components/ui/Section'
 import { GoogleMapEmbed } from '@/components/shared/GoogleMapEmbed'
-import { ContactForm } from '@/components/contact/ContactForm'
+
+const ContactForm = lazy(() =>
+  import('@/components/contact/ContactForm').then((m) => ({ default: m.ContactForm })),
+)
 import { site } from '@/data/site'
 import { formatSiteAddress } from '@/lib/contact'
 
@@ -78,7 +82,9 @@ export function ContactPage() {
             </div>
           </div>
 
-          <ContactForm />
+          <Suspense fallback={<div className="h-96 animate-pulse rounded-sm bg-surface" aria-hidden />}>
+            <ContactForm />
+          </Suspense>
         </div>
       </Section>
 
