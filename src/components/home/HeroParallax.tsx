@@ -10,7 +10,7 @@ import { useIsMobile } from '@/hooks/useIsMobile'
 
 const AUTO_INTERVAL_MS = 2000
 const TRANSITION_S = 0.85
-const SLIDE_IMAGE_OPACITY = 0.42
+const SLIDE_IMAGE_OPACITY = 0.58
 
 export function HeroParallax() {
   const ref = useRef<HTMLElement>(null)
@@ -45,7 +45,7 @@ export function HeroParallax() {
 
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '32%'])
   const bgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15])
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.55], [0.82, 0.94])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.55], [0.68, 0.82])
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0])
 
@@ -90,10 +90,10 @@ export function HeroParallax() {
       </motion.div>
 
       <motion.div
-        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/90 via-black/80 to-black pointer-events-none"
-        style={parallaxEnabled ? { opacity: overlayOpacity } : { opacity: 0.88 }}
+        className="absolute inset-0 z-[1] bg-gradient-to-b from-black/70 via-black/55 to-black/85 pointer-events-none"
+        style={parallaxEnabled ? { opacity: overlayOpacity } : { opacity: 0.72 }}
       />
-      <div className="absolute inset-0 z-[1] bg-black/35 pointer-events-none" aria-hidden />
+      <div className="absolute inset-0 z-[1] bg-black/20 pointer-events-none" aria-hidden />
 
       {carouselEnabled && slideCount > 1 && (
         <div
