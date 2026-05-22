@@ -5,9 +5,11 @@ import { BookingCTA } from '@/components/shared/BookingCTA'
 import { Button } from '@/components/ui/Button'
 import { images } from '@/data/images'
 import { site } from '@/data/site'
-import { serviceMenuItems } from '@/data/serviceMenu'
+import { ServiceMenuProvider, useServiceMenuContext } from '@/contexts/ServiceMenuContext'
 
-export function ServicesPage() {
+function ServicesPageContent() {
+  const { items, isLoading, isError } = useServiceMenuContext()
+
   return (
     <>
       <PageMeta
@@ -39,13 +41,27 @@ export function ServicesPage() {
       <Section className="bg-black !pt-12">
         <p className="text-center text-muted text-sm max-w-2xl mx-auto mb-10 font-light">
           Prices marked <span className="text-gold-light">From</span> may vary by hair length and
-          product choice. <span className="text-white/80">{serviceMenuItems.length}</span> services
-          across our salon menu.
+          product choice.{' '}
+          {!isError && (
+            <>
+              <span className="text-white/80">{isLoading ? '…' : items.length}</span> services across
+              our salon menu.
+            </>
+          )}
+          {isError && 'Live pricing loads from our Google Sheets menu.'}
         </p>
         <ServicePriceCatalog />
       </Section>
 
       <BookingCTA />
     </>
+  )
+}
+
+export function ServicesPage() {
+  return (
+    <ServiceMenuProvider>
+      <ServicesPageContent />
+    </ServiceMenuProvider>
   )
 }

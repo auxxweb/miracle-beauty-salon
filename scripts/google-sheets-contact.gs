@@ -4,8 +4,10 @@
  * - Execute as: Me
  * - Who has access: Anyone
  *
- * Sheet row columns (row 1 headers recommended):
+ * Contact sheet row columns (row 1 headers recommended):
  * Timestamp | Full Name | Phone | Email | Service | Preferred Date | Message | Source Page
+ *
+ * Also paste scripts/google-sheets-services.gs into the same project for GET ?action=services.
  */
 function doPost(e) {
   try {
