@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://auxxweb.github.io/miracle-beauty-salon/",
+  "homepage": "https://www.miraclebeautycare.in/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

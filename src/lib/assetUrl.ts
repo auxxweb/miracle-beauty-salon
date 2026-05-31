@@ -1,5 +1,5 @@
 /**
- * Resolve a public-folder path for the current Vite base (GitHub Pages subpath in production).
+ * Resolve a public-folder path for the current Vite base URL.
  */
 export function assetUrl(path: string): string {
   const base = import.meta.env.BASE_URL
