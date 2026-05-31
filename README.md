@@ -43,6 +43,15 @@ The `/services` page loads pricing live from Google Apps Script on every visit a
 
 Sheet edits appear after a page refresh or when returning to the tab. If the API is unreachable, the last saved snapshot is shown with an offline notice.
 
+## Offers (Google Sheets)
+
+Homepage shows **4 active offers** below the hero; **View all offers** links to `/offers`.
+
+Sheet tab **Offers** — headers:  
+`offer_type`, `offer_category`, `offer_name`, `offer_price`, `additional_note`, `image_url`, `display_order`, `status`
+
+Only rows with `status` = **Active** are shown. API: `GOOGLE_SHEETS_WEB_APP_URL?sheet=Offers`
+
 ## Customize business info
 
 Edit `src/data/site.ts` — phone, email, address, hours, social links, and booking URL.
@@ -52,6 +61,7 @@ Edit `src/data/site.ts` — phone, email, address, hours, social links, and book
 | Route | Page |
 |-------|------|
 | `/` | Home (parallax hero) |
+| `/offers` | Offers |
 | `/services` | Services |
 | `/about` | About |
 | `/gallery` | Gallery |

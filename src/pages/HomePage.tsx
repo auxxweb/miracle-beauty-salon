@@ -2,6 +2,8 @@ import { lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from '@/lib/motion'
 import { HeroParallax } from '@/components/home/HeroParallax'
+import { OffersSection } from '@/components/home/OffersSection'
+import { OffersProvider } from '@/contexts/OffersContext'
 import { OptimizedImage } from '@/components/ui/OptimizedImage'
 import { Section } from '@/components/ui/Section'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -31,7 +33,10 @@ export function HomePage() {
   return (
     <>
       <PageMeta title="Home" description={seo.defaultDescription} />
-      <HeroParallax />
+      <OffersProvider>
+        <HeroParallax />
+        <OffersSection />
+      </OffersProvider>
 
       <Section id="intro" className="bg-surface border-b border-gold-subtle">
         <p className="max-w-3xl mx-auto text-center text-muted text-base md:text-lg font-light leading-relaxed">

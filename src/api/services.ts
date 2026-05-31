@@ -1,4 +1,5 @@
 import { GOOGLE_SHEETS_SERVICES_API_URL } from '@/config/forms'
+import { extractSheetRows, liveSheetUrl } from '@/api/sheetResponse'
 import type { ServiceAudience, ServiceCostUnit, ServiceMenuItem } from '@/data/serviceMenu'
 
 const STORAGE_KEY = 'mbs-service-menu-v2'
@@ -82,11 +83,8 @@ export function fingerprintServices(items: ServiceMenuItem[]): string {
   return `${items.length}:${hash}`
 }
 
-function isSheetRowArray(data: unknown): data is SheetServiceRow[] {
-  return (
-    Array.isArray(data) &&
-    data.every((row) => row && typeof row === 'object' && 'service_name' in row)
-  )
+function isSheetRow(row: unknown): row is SheetServiceRow {
+  return Boolean(row && typeof row === 'object' && 'service_name' in row)
 }
 
 function readStorage(): StoredPayload | null {
@@ -127,9 +125,7 @@ export function peekServices(): ServiceMenuItem[] | null {
 }
 
 function liveApiUrl(): string {
-  const base = GOOGLE_SHEETS_SERVICES_API_URL
-  const sep = base.includes('?') ? '&' : '?'
-  return `${base}${sep}_=${Date.now()}`
+  return liveSheetUrl(GOOGLE_SHEETS_SERVICES_API_URL)
 }
 
 async function fetchLive(): Promise<ServiceMenuItem[]> {
@@ -143,16 +139,10 @@ async function fetchLive(): Promise<ServiceMenuItem[]> {
     throw new Error(`Services API returned ${response.status}`)
   }
 
-  const data: unknown = await response.json()
+  const payload: unknown = await response.json()
+  const rows = extractSheetRows(payload, isSheetRow)
 
-  if (!isSheetRowArray(data)) {
-    if (data && typeof data === 'object' && 'message' in data) {
-      throw new Error(String((data as { message: string }).message))
-    }
-    throw new Error('Invalid services response from Google Sheets')
-  }
-
-  const items = data
+  const items = rows
     .map(mapSheetRowToMenuItem)
     .filter((item): item is ServiceMenuItem => item != null)
 

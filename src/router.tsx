@@ -19,6 +19,9 @@ const GalleryPage = lazy(() =>
 const ContactPage = lazy(() =>
   import('@/pages/ContactPage').then((m) => ({ default: m.ContactPage })),
 )
+const OffersPage = lazy(() =>
+  import('@/pages/OffersPage').then((m) => ({ default: m.OffersPage })),
+)
 const ServiceCategoryPage = lazy(() =>
   import('@/pages/ServiceCategoryPage').then((m) => ({ default: m.ServiceCategoryPage })),
 )
@@ -34,6 +37,7 @@ export const router = createHashRouter([
     errorElement: <RouteErrorPage />,
     children: [
       { index: true, element: withSuspense(<HomePage />) },
+      { path: 'offers', element: withSuspense(<OffersPage />) },
       { path: 'services', element: withSuspense(<ServicesPage />) },
       { path: 'services/:slug', element: withSuspense(<ServiceCategoryPage />) },
       { path: 'about', element: withSuspense(<AboutPage />) },
